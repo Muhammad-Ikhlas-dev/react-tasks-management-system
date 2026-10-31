@@ -6,7 +6,7 @@ A responsive Full Stack Task Management application built with **React 19**, **N
 
 ## 🚀 Live Access & Deployment
 
-- **Frontend Application (Local UI)**: https://react-tasks-management-client.vercel.app
+- **Frontend Application (Vercel)**: https://react-tasks-management-client.vercel.app
 - **Deployed Backend API (Vercel)**: [https://react-tasks-management-system.vercel.app/api](https://react-tasks-management-system.vercel.app/api)
 - **API Health Check**: [https://react-tasks-management-system.vercel.app/api/health](https://react-tasks-management-system.vercel.app/api/health)
 - **Tasks Endpoint**: [https://react-tasks-management-system.vercel.app/api/tasks](https://react-tasks-management-system.vercel.app/api/tasks)
