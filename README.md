@@ -13,7 +13,7 @@ A modern Full Stack Task Management application built with **React 19**, **Node.
 
 ---
 
-## 🌟 Phase 2: Public API Integration (Step 3)
+## 🌟 Phase 2: Public API Integration
 
 ### 1. API Used
 - **Provider**: **[Open-Meteo Weather API](https://open-meteo.com/)**
