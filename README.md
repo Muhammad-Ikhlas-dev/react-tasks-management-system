@@ -1,22 +1,22 @@
-# TaskFlow - Full Stack Task Management Application
+# TaskFlow - Full Stack Task Management Application (Phase 1)
 
 A responsive Full Stack Task Management application built with **React 19**, **Node.js/Express**, and **MongoDB Atlas**.
 
 ---
 
-## 🚀 Live Access
+## 🚀 Live Access & Deployment
 
-- **Frontend Application**: [http://localhost:3000](http://localhost:3000)
-- **Backend API Server**: [http://localhost:5000](http://localhost:5000)
-- **API Health Check**: [http://localhost:5000/api/health](http://localhost:5000/api/health)
-- **Tasks Endpoint**: [http://localhost:5000/api/tasks](http://localhost:5000/api/tasks)
+- **Frontend Application (Local UI)**: [http://localhost:3000](http://localhost:3000)
+- **Deployed Backend API (Vercel)**: [https://react-tasks-management-system.vercel.app/api](https://react-tasks-management-system.vercel.app/api)
+- **API Health Check**: [https://react-tasks-management-system.vercel.app/api/health](https://react-tasks-management-system.vercel.app/api/health)
+- **Tasks Endpoint**: [https://react-tasks-management-system.vercel.app/api/tasks](https://react-tasks-management-system.vercel.app/api/tasks)
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 19, Modern CSS (Responsive Grid/Flexbox, custom CSS variables)
-- **Backend**: Node.js, Express.js, CORS, Dotenv
+- **Frontend**: React 19, Modern CSS (Responsive Grid/Flexbox, CSS variables, native Fetch API)
+- **Backend**: Node.js, Express.js, CORS, Dotenv, Vercel Serverless
 - **Database**: MongoDB Atlas (`task-assessments-db`), Collection: `tasks`, ODM: Mongoose 7
 
 ---
@@ -69,6 +69,22 @@ A responsive Full Stack Task Management application built with **React 19**, **N
 
 ---
 
+## 💻 Environment Variables
+
+### Frontend (`client/.env`)
+```env
+REACT_APP_API_URL=https://react-tasks-management-system.vercel.app/api
+```
+*(If left empty, the client defaults to `http://localhost:5000/api`)*
+
+### Backend (`server/.env`)
+```env
+MONGO_URI=mongodb+srv://mikhlas78690:newGmail786@cluster0.8ndnqrm.mongodb.net/task-assessments-db?retryWrites=true&w=majority
+PORT=5000
+```
+
+---
+
 ## 💻 Setup & Run Instructions
 
 ### Prerequisites
@@ -86,30 +102,19 @@ cd ../client
 npm install
 ```
 
-### 2. Environment Configuration
-Create or inspect `server/.env`:
-```env
-MONGO_URI=mongodb+srv://mikhlas78690:newGmail786@cluster0.8ndnqrm.mongodb.net/task-assessments-db?retryWrites=true&w=majority
-PORT=5000
-```
-
-### 3. Running the Application
+### 2. Running the Application
 From the root directory:
 ```bash
-# Start backend server (Port 5000)
-npm run server
-
-# In another terminal, start React client (Port 3000)
+# Run React client connected to Vercel Backend
 npm run client
-```
 
-Or run both from their respective directories:
-- **Server**: `cd server && npm start`
-- **Client**: `cd client && npm start`
+# (Optional) Run local backend server on Port 5000
+npm run server
+```
 
 ---
 
-## ✨ Features Implemented
+## ✨ Features Implemented (Phase 1 Requirements)
 
 1. **Responsive User Interface**:
    - Modern, clean card-based layout with responsive mobile/tablet/desktop CSS.
@@ -123,4 +128,3 @@ Or run both from their respective directories:
    - **Edit Task**: Inline edit mode allowing updates to title, description, and priority.
    - **Delete Task**: Removes task from MongoDB collection and UI instantly.
    - **Mark as Completed**: Checkbox toggle updating `completed: true/false` directly in database.
-

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './TaskManager.css';
 
-const API_BASE_URL = 'http://localhost:5000/api/tasks';
+const getApiBaseUrl = () => {
+  const rawUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+  const cleanUrl = rawUrl.replace(/\/+$/, '');
+  return cleanUrl.endsWith('/tasks') ? cleanUrl : `${cleanUrl}/tasks`;
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 function TaskManager() {
   const [tasks, setTasks] = useState([]);
@@ -212,7 +218,21 @@ function TaskManager() {
       {/* Header */}
       <header className="tm-header">
         <h1 className="tm-title">Task Manager</h1>
-        <p className="tm-subtitle">Full Stack Task Management System </p>
+        <p className="tm-subtitle">Full Stack Task Management System • Phase 1</p>
+        <div className="tm-badges">
+          <span className="badge-pill">
+            <span className="badge-dot"></span> React 19 Client
+          </span>
+          <span className="badge-pill">
+            <span className="badge-dot"></span>{' '}
+            {API_BASE_URL.includes('vercel.app')
+              ? 'Vercel Deployed API'
+              : 'Localhost API'}
+          </span>
+          <span className="badge-pill">
+            <span className="badge-dot"></span> MongoDB: task-assessments-db
+          </span>
+        </div>
       </header>
 
       {/* Notification Toast */}
