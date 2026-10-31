@@ -1,0 +1,14 @@
+{
+  "name": "iqt-task-manager",
+  "version": "1.0.0",
+  "description": "Full Stack Task Manager with React, Node/Express, and MongoDB Atlas",
+  "scripts": {
+    "server": "npm --prefix server start",
+    "server:dev": "npm --prefix server run dev",
+    "client": "npm --prefix client start",
+    "client:build": "npm --prefix client run build"
+  },
+  "author": "",
+  "license": "ISC"
+}
+
