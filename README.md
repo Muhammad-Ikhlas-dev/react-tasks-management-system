@@ -1,6 +1,6 @@
-# TaskFlow - Full Stack Task Management Application (Phase 1)
+# TaskFlow - Full Stack Task Management & Weather System
 
-A responsive Full Stack Task Management application built with **React 19**, **Node.js/Express**, and **MongoDB Atlas**.
+A modern Full Stack Task Management application built with **React 19**, **Node.js/Express**, **MongoDB Atlas**
 
 ---
 
@@ -13,11 +13,38 @@ A responsive Full Stack Task Management application built with **React 19**, **N
 
 ---
 
+## 🌟 Phase 2: Public API Integration (Step 3)
+
+### 1. API Used
+- **Provider**: **[Open-Meteo Weather API](https://open-meteo.com/)**
+- **Endpoints**:
+  1. **Geocoding API**: `https://geocoding-api.open-meteo.com/v1/search?name={city}&count=1&language=en&format=json`
+  2. **Forecast Weather API**: `https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&timezone=auto`
+- **Key Features**: Free public access, no API key required, zero rate limit constraints for open source / evaluation, high accuracy global coverage.
+
+### 2. Explanation of Implementation
+The integration connects weather data to task management to help users plan their day based on current atmospheric conditions:
+
+1. **Two-Tier API Workflow**:
+   - When a user enters a city or clicks a preset city (e.g., *London, New York, Tokyo, Paris, Karachi*), the application queries the Open-Meteo Geocoding API to resolve the city's exact latitude and longitude coordinates.
+   - The coordinates are then passed to the Open-Meteo Forecast API to fetch live temperature (`temperature_2m`), apparent temperature (`apparent_temperature`), relative humidity (`relative_humidity_2m`), wind speed (`wind_speed_10m`), and WMO weather condition code (`weather_code`).
+2. **WMO Weather Interpretation**:
+   - The application translates WMO meteorological codes (0–99) into human-readable condition titles (e.g., *Clear Sky, Overcast, Rain, Thunderstorm*) and dynamic visual icons (`☀️`, `🌧️`, `⛅`, `❄️`).
+3. **Weather-Powered Task Productivity Engine**:
+   - Evaluates the current weather condition and dynamically provides contextual task planning recommendations directly inside the widget (e.g., *"Rainy day! Ideal setting for heads-down coding and finishing pending tasks"* or *"Clear skies! Perfect time for outdoor errands or high-energy task execution"*).
+4. **User Controls**:
+   - Instant search input to lookup any city worldwide.
+   - Quick preset selector pills for major international cities.
+   - Live refresh button displaying last updated timestamp.
+
+---
+
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 19, Modern CSS (Responsive Grid/Flexbox, CSS variables, native Fetch API)
+- **Frontend**: React 19, Modern CSS (Responsive Grid/Flexbox, custom CSS variables, native Fetch API)
 - **Backend**: Node.js, Express.js, CORS, Dotenv, Vercel Serverless
 - **Database**: MongoDB Atlas (`task-assessments-db`), Collection: `tasks`, ODM: Mongoose 7
+- **External Integration**: Open-Meteo Public Weather API
 
 ---
 
@@ -75,7 +102,7 @@ A responsive Full Stack Task Management application built with **React 19**, **N
 ```env
 REACT_APP_API_URL=https://react-tasks-management-system.vercel.app/api
 ```
-*(If left empty, the client defaults to `http://localhost:5000/api`)*
+*(Defaults to `http://localhost:5000/api` if not provided)*
 
 ### Backend (`server/.env`)
 ```env
@@ -87,44 +114,14 @@ PORT=5000
 
 ## 💻 Setup & Run Instructions
 
-### Prerequisites
-- Node.js (v18+)
-- npm
-
-### 1. Install Dependencies
 ```bash
-# Install server dependencies
-cd server
-npm install
+# 1. Install dependencies
+cd server && npm install
+cd ../client && npm install
 
-# Install client dependencies
-cd ../client
-npm install
-```
-
-### 2. Running the Application
-From the root directory:
-```bash
-# Run React client connected to Vercel Backend
+# 2. Run React client
 npm run client
 
-# (Optional) Run local backend server on Port 5000
+# 3. (Optional) Run local backend server on Port 5000
 npm run server
 ```
-
----
-
-## ✨ Features Implemented (Phase 1 Requirements)
-
-1. **Responsive User Interface**:
-   - Modern, clean card-based layout with responsive mobile/tablet/desktop CSS.
-   - Real-time statistics counters (Total Tasks, Pending, Completed).
-   - Filter tabs: All, Pending, Completed, plus dynamic search bar.
-   - Priority indicators (Low, Medium, High).
-   - Animated notification alerts for actions (add, edit, toggle, delete).
-
-2. **Full CRUD & Database Sync**:
-   - **Add Task**: Validates title input and creates new task in MongoDB.
-   - **Edit Task**: Inline edit mode allowing updates to title, description, and priority.
-   - **Delete Task**: Removes task from MongoDB collection and UI instantly.
-   - **Mark as Completed**: Checkbox toggle updating `completed: true/false` directly in database.

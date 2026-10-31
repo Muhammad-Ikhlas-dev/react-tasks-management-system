@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './TaskManager.css';
+import WeatherWidget from './WeatherWidget';
 
 const getApiBaseUrl = () => {
   const rawUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
@@ -217,8 +218,8 @@ function TaskManager() {
     <div className="task-manager-container">
       {/* Header */}
       <header className="tm-header">
-        <h1 className="tm-title">Task Manager</h1>
-        <p className="tm-subtitle">Full Stack Task Management System • Phase 1</p>
+        <h1 className="tm-title">TaskFlow Manager</h1>
+        <p className="tm-subtitle">Full Stack Task Management & Weather Productivity System</p>
         <div className="tm-badges">
           <span className="badge-pill">
             <span className="badge-dot"></span> React 19 Client
@@ -227,13 +228,19 @@ function TaskManager() {
             <span className="badge-dot"></span>{' '}
             {API_BASE_URL.includes('vercel.app')
               ? 'Vercel Deployed API'
-              : 'Localhost API'}
+              : 'Express REST API'}
           </span>
           <span className="badge-pill">
             <span className="badge-dot"></span> MongoDB: task-assessments-db
           </span>
+          <span className="badge-pill">
+            <span className="badge-dot"></span> Open-Meteo Weather API
+          </span>
         </div>
       </header>
+
+      {/* Weather Integration */}
+      <WeatherWidget />
 
       {/* Notification Toast */}
       {notification && (
